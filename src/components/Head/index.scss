@@ -1,0 +1,9 @@
+[data-component=Head]{
+  &:after{content:"";display:table;}
+  &:after{clear:both;}
+
+  ul li{
+    margin-right: 10px;
+    float: left;
+  }
+}
