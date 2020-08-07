@@ -11,8 +11,8 @@
     "dev:build:server": "webpack --config webpack.server.config.js",
     "start": "npm-run-all --parallel start:**",
     "start:start": "nodemon ./dist/server/main.js",
-    "start:build:client": "webpack --config webpack.client.config.js --watch",
-    "start:build:server": "webpack --config webpack.server.config.js --watch"
+    "start:watch:client": "webpack --config webpack.client.config.js --watch",
+    "start:watch:server": "webpack --config webpack.server.config.js --watch"
   },
   "dependencies": {
     "@loadable/component": "^5.13.1",

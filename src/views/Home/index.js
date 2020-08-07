@@ -1,7 +1,7 @@
 import React from 'react';
 import loadable from '@loadable/component';
 import Shanbay from '../../components/Shanbay';
-const Async = loadable(()=>import('../../components/Async'));
+const Async = loadable(()=>import('../../components/Async'), {ssr: false});
 
 const Home = props=>(
   <>

@@ -25,7 +25,7 @@ let AppServer = async (url, ctx)=>{
   const AppServer = porps => {
     return (
       <Provider store={store}>
-        <StaticRouter location={url} context={{}}>
+        <StaticRouter location={url} context={ctx}>
           {renderRoutes(routes)}
         </StaticRouter>
       </Provider>
@@ -51,7 +51,6 @@ let AppServer = async (url, ctx)=>{
 
   return html.replace(/\n|\r/g,"")
 }
-
 
 const app = new Koa();
 

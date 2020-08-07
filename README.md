@@ -1,32 +1,21 @@
 ## 目录结构
-  dist 编译目录  
-  src 代码目录  
+dist 编译目录  
+src 代码目录  
 
-## devDependencies
-  "@babel/core": "^7.4.5",  
-  "@babel/plugin-syntax-dynamic-import": "^7.2.0",  
-  "@babel/preset-env": "^7.4.5",  
-  "autoprefixer": "^9.7.4",  
-  "babel-loader": "^8.0.6",  
-  "clean-webpack-plugin": "^3.0.0",  
-  "css-loader": "^2.1.1",  
-  "eslint": "^6.8.0",  
-  "eslint-config-airbnb-base": "^14.0.0",  
-  "eslint-plugin-import": "^2.20.0",  
-  "handlebars": "^4.7.2",  
-  "handlebars-loader": "^1.7.1",  
-  "html-webpack-plugin": "^3.2.0",  
-  "html-webpack-tags-plugin": "^2.0.17",  
-  "mini-css-extract-plugin": "^0.9.0",  
-  "node-sass": "^4.13.1",  
-  "optimize-css-assets-webpack-plugin": "^5.0.3",  
-  "postcss-loader": "^3.0.0",  
-  "sass-loader": "^8.0.2",  
-  "terser-webpack-plugin": "^2.3.2",  
-  "url-loader": "^1.1.2",  
+## api开发服务器
+https://github.com/iocdacc/api  
 
-  ### webpack核心和工具
-  "webpack": "^4.32.2",  
-  "webpack-cli": "^3.3.2",  
-  "webpack-dev-server": "^3.3.1",  
-  "webpack-merge": "^4.2.2"  
+## 暂时面临的问题
+1. 数据预取问题  
+components.loadData 数据预取方法只有路由组件会自动执行，而子组件因为路由无法获取到方法所以不会自动执行。  
+暂时解决：只有通过其路由父组件调用来间接执行，这样会在开发阶段造成不小的负担。  
+
+2. 路由的匹配问题  
+公共组件比如 导航栏 尾部，是通过路由包裹的形式实现。这样只需在顶层路由一次调用公共组件，内部的其他路由就都有这些公共组件了。
+但存在一个问题，如果未匹配到内部路由的404页面又不想要公共部分，因为顶层路由是全匹配导致之后的路由都不会被匹配到，从而404也面只能被公共路由包裹才能被匹配到，但公共部分存在的组件也一并加载了。
+暂时解决：在公共路由添加自定义数组属性，内部填写哪些组件不要公共部分，然后在公共路由的组件内进行判断当前路由是否需要公共部分。但这会给公共路由的组件增加代码冗余。  
+
+3. 组件懒加载问题  
+服务端的异步组件并不会被渲染成HTML但又会发出不必要的异步请求。  
+~~暂时解决：暂时还未找到如何避免服务端这些不必要的异步请求的方法。~~  
+解决:loadable 配置SSR时不请求异步组件

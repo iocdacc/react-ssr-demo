@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 
 const Async = props => {
   return (
@@ -7,6 +7,5 @@ const Async = props => {
     </div>
   )
 }
-
 
 export default Async
